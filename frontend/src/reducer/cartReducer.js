@@ -1,13 +1,11 @@
 import {
     ADD_TO_CART,
     REMOVE_ITEM_CART,
-    UPDATE_CART_QUANTITY,
     CLEAR_CART,
     SAVE_DELIVERY_INFO,
     SET_RESTAURANT_ID,
     FETCH_CART,
     UPDATE_CART_ITEM,
-
 } from "../constants/cartConstant";
 
 

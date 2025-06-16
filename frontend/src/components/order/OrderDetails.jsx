@@ -1,4 +1,3 @@
-
 import React, { Fragment, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
@@ -7,17 +6,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 
 import Loader from "../layouts/Loader";
-import { getOrderDetails,clearErrors } from "../../actions/orderAction";
+import { getOrderDetails, clearErrors } from "../../actions/orderAction";
 
-const OrderDetails = ({}) => {
-  const alert =useAlert();
-  const dispatch=useDispatch();
-  const {id}=useParams();
+const OrderDetails = () => {
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const {
     loading,
     error,
-    order={},
-  } =useSelector((state)=> state.orderDetails);
+    order = {},
+  } = useSelector((state) => state.orderDetails);
    
   const {
     deliveryInfo,
@@ -26,7 +25,7 @@ const OrderDetails = ({}) => {
     user,
     finalTotal,
     orderStatus,
-  }=order;
+  } = order;
 
 useEffect(()=> {
   dispatch(getOrderDetails(id));

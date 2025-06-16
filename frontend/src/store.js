@@ -5,7 +5,6 @@ import { menuReducer } from "./reducer/menuReducer";
 import { authReducer, forgotPasswordReducer, userReducer } from "./reducer/userReducer";
 import { cartReducer } from "./reducer/cartReducer";
 import { myOrdersReducer, newOrderReducer, orderDetailsReducer } from "./reducer/orderReducer";
-import { myOrders } from "./actions/orderAction";
 
 const reducer =combineReducers({
     restaurants:restaurantReducer,
