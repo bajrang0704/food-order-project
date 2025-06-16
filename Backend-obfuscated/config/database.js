@@ -1,7 +1,16 @@
 const mongoose = require('mongoose');
 
 const connectDatabase = () => {
-    mongoose.connect(process.env.DB_LOCAL_URI, {
+    const uri = process.env.NODE_ENV === 'PRODUCTION' 
+        ? process.env.MONGODB_URI 
+        : process.env.DB_LOCAL_URI;
+
+    if (!uri) {
+        console.error('MongoDB URI is not defined in environment variables');
+        process.exit(1);
+    }
+
+    mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -10,6 +19,7 @@ const connectDatabase = () => {
     })
     .catch(err => {
         console.log('Error connecting to database:', err);
+        process.exit(1);
     });
 };
 
