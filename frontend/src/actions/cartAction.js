@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_TO_CART, FETCH_CART, UPDATE_DELIVERY_INFO, UPDATE_CART_ITEM, REMOVE_ITEM_CART } from "../constants/cartConstant";
+import { ADD_TO_CART, FETCH_CART, UPDATE_CART_ITEM, REMOVE_ITEM_CART } from "../constants/cartConstant";
 
 export const fetchCartItems = (alert) => async (dispatch) => {
   try {
