@@ -1,0 +1,6 @@
+for backend 1)cd ./backend-obfuscated/
+             2)npm start
+
+->split another terminal
+for frontend 1)cd ./frontend/
+             2)npm start
