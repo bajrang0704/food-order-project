@@ -1,22 +1,23 @@
 import { ALL_RESTAURANTS_REQUEST, ALL_RESTAURANTS_SUCCESS ,ALL_RESTAURANTS_FAIL,SORT_BY_RATINGS,SORT_BY_REVIEWS,CLEAR_ERROR,TOGGLE_VEG_ONLY} from "../constants/restaurantsConstant"
 import axios from "axios";
+import config from "../config";
 
 export const getRestaurants =()=>{
     return async(dispatch) =>{
         try{
         dispatch({type: ALL_RESTAURANTS_REQUEST });
-        let link = '/api/v1/eats/stores';
-        const {data} =await axios.get(link);
-        console.log(data);
+        const {data} =await axios.get(`${config.API_URL}/eats/stores`);
+        console.log("Restaurants data:", data);
         const {restaurants, count}= data;
         dispatch({
             type: ALL_RESTAURANTS_SUCCESS,
             payload:{restaurants,count},
         });
     }catch(err){
+        console.error("Error fetching restaurants:", err);
         dispatch({
             type: ALL_RESTAURANTS_FAIL,
-            payload:err.response.data.message,
+            payload: err.response?.data?.message || "Error fetching restaurants",
         });
         
         
