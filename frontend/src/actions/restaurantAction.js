@@ -6,15 +6,31 @@ export const getRestaurants =()=>{
     return async(dispatch) =>{
         try{
         dispatch({type: ALL_RESTAURANTS_REQUEST });
+        console.log("Fetching restaurants from:", `${config.API_URL}/eats/stores`);
+        
         const {data} =await axios.get(`${config.API_URL}/eats/stores`);
-        console.log("Restaurants data:", data);
+        console.log("Restaurants API Response:", data);
+        
+        if (!data || !data.restaurants) {
+            console.error("Invalid API response format:", data);
+            throw new Error("Invalid API response format");
+        }
+
         const {restaurants, count}= data;
+        console.log("Found restaurants:", restaurants.length);
+        
         dispatch({
             type: ALL_RESTAURANTS_SUCCESS,
             payload:{restaurants,count},
         });
     }catch(err){
         console.error("Error fetching restaurants:", err);
+        console.error("Error details:", {
+            message: err.message,
+            response: err.response?.data,
+            status: err.response?.status
+        });
+        
         dispatch({
             type: ALL_RESTAURANTS_FAIL,
             payload: err.response?.data?.message || "Error fetching restaurants",
